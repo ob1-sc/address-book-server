@@ -2,7 +2,10 @@ package com.emc.documentum.sample.domain;
 
 import com.emc.documentum.springdata.entitymanager.mapping.DctmAttribute;
 import com.emc.documentum.springdata.entitymanager.mapping.DctmEntity;
+import com.rsa.cryptoj.o.gr;
 import org.springframework.data.annotation.Id;
+
+import java.util.List;
 
 /**
  * Contact domain object represents contact repository object
@@ -14,15 +17,15 @@ public class Contact {
 
 	@Id
 	protected String id;
-
 	@DctmAttribute(value="object_name")
 	private String name;
-
 	private String email;
+	private List<String> groups;
 
-	public Contact(String name, String email) {
+	public Contact(String name, String email, List<String> groups) {
 		this.email =  email;
 		this.name = name;
+		this.groups = groups;
 	}
 
 	public Contact() {
@@ -81,4 +84,22 @@ public class Contact {
     public void setEmail(String email) {
         this.email = email;
     }
+
+	/**
+	 * Get the groups
+	 *
+	 * @return the groups
+	 */
+	public List<String> getGroups() {
+		return this.groups;
+	}
+
+	/**
+	 * Set the groups
+	 *
+	 * @param groups the groups
+	 */
+	public void setGroups(List<String> groups) {
+		this.groups = groups;
+	}
 }

@@ -3,11 +3,8 @@ package com.emc.documentum.sample.repositories;
 import com.emc.documentum.sample.TestConfig;
 import com.emc.documentum.sample.domain.Contact;
 import com.emc.documentum.springdata.core.Documentum;
-import org.apache.commons.collections.CollectionUtils;
-import org.apache.commons.collections.IteratorUtils;
 import org.apache.commons.lang.RandomStringUtils;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -71,6 +68,13 @@ public class ContactRepositoryTest {
         testContact.setName(RandomStringUtils.randomAlphanumeric(255));
         testContact.setEmail(RandomStringUtils.randomAlphanumeric(255));
 
+        List<String> groups = new ArrayList<String>();
+        groups.add("friends");
+        groups.add("colleagues");
+        groups.add("university");
+
+        testContact.setGroups(groups);
+
         return testContact;    }
 
     /**
@@ -91,6 +95,7 @@ public class ContactRepositoryTest {
             assertThat(createdContact, is(notNullValue()));
             assertThat(createdContact.getName(), is(equalTo(contact.getName())));
             assertThat(createdContact.getEmail(), is(equalTo(contact.getEmail())));
+            assertThat(createdContact.getGroups(), is(equalTo(contact.getGroups())));
 
         } finally {
 
@@ -123,6 +128,7 @@ public class ContactRepositoryTest {
             assertThat(foundContact, is(notNullValue()));
             assertThat(foundContact.getName(), is(equalTo(contact.getName())));
             assertThat(foundContact.getEmail(), is(equalTo(contact.getEmail())));
+            assertThat(foundContact.getGroups(), is(equalTo(contact.getGroups())));
 
         } finally {
 
@@ -175,6 +181,13 @@ public class ContactRepositoryTest {
             createdContact.setName(RandomStringUtils.randomAlphanumeric(255));
             createdContact.setEmail(RandomStringUtils.randomAlphanumeric(255));
 
+            List<String> groups = new ArrayList<String>();
+            groups.add("group1");
+            groups.add("group2");
+            groups.add("group3");
+
+            createdContact.setGroups(groups);
+
             // update the contact
             Contact updatedContact = contactRepository.save(createdContact);
 
@@ -182,6 +195,7 @@ public class ContactRepositoryTest {
             assertThat(updatedContact, is(notNullValue()));
             assertThat(updatedContact.getName(), is(equalTo(createdContact.getName())));
             assertThat(updatedContact.getEmail(), is(equalTo(createdContact.getEmail())));
+            assertThat(updatedContact.getGroups(), is(equalTo(createdContact.getGroups())));
 
         } finally {
 
@@ -192,6 +206,8 @@ public class ContactRepositoryTest {
 
     /**
      * Test to find all contacts
+     *
+     * TODO: update with attribute value match check due to repeating attribute bug and rever
      */
     @Test
     public void findAllContacts() {
@@ -237,7 +253,7 @@ public class ContactRepositoryTest {
     }
 
     /**
-     * Test to find a contact by its Name
+     * Test to find a contact by its exact Name
      */
     @Test
     public void findContactByName() {
@@ -266,6 +282,96 @@ public class ContactRepositoryTest {
 
                 // check if the test contact was found
                 if(foundContact.getName().equals(createdContact.getName())) {
+                    testContactWasFound = true;
+                    break;
+                }
+            }
+
+            assertThat(testContactWasFound, is(true));
+
+        } finally {
+
+            // clean up the contact
+            contactRepository.delete(createdContact);
+        }
+    }
+
+    /**
+     * Test to find a contact by part of its name
+     */
+    @Test
+    public void findContactByNameContaining() {
+
+        Contact contact = createTestContact();
+        Contact createdContact = null;
+
+        try {
+
+            // create a test contact
+            createdContact = contactRepository.save(contact);
+
+            // check the contact was created
+            assertThat(createdContact, is(notNullValue()));
+
+            String nameSubstring = createdContact.getName().substring(4,176);
+
+            // try and find the new contact using the name
+            Iterable<Contact> foundContacts = contactRepository.findByNameContaining(nameSubstring);
+
+            // check at least one contact was found
+            assertThat(foundContacts, is(notNullValue()));
+
+            boolean testContactWasFound = false;
+
+            // iterate through the contacts
+            for (Contact foundContact : foundContacts) {
+
+                // check if the test contact was found
+                if(foundContact.getName().contains(nameSubstring)) {
+                    testContactWasFound = true;
+                    break;
+                }
+            }
+
+            assertThat(testContactWasFound, is(true));
+
+        } finally {
+
+            // clean up the contact
+            contactRepository.delete(createdContact);
+        }
+    }
+
+    /**
+     * Test to find a contact where it contains a given group
+     */
+    @Test
+    public void findContactByGroup() {
+
+        Contact contact = createTestContact();
+        Contact createdContact = null;
+
+        try {
+
+            // create a test contact
+            createdContact = contactRepository.save(contact);
+
+            // check the contact was created
+            assertThat(createdContact, is(notNullValue()));
+
+            // try and find the new contact using the group
+            Iterable<Contact> foundContacts = contactRepository.findByGroups("friends");
+
+            // check at least one contact was found
+            assertThat(foundContacts, is(notNullValue()));
+
+            boolean testContactWasFound = false;
+
+            // iterate through the contacts
+            for (Contact foundContact : foundContacts) {
+
+                // check if the test contact was found
+                if(foundContact.getGroups().contains("friends")) {
                     testContactWasFound = true;
                     break;
                 }

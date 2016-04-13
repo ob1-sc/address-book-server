@@ -34,6 +34,12 @@ public class ContactController {
         return contactRepository.findAll();
     }
 
+    @RequestMapping(value="", method=RequestMethod.POST)
+    public String createContact(@RequestBody @Valid final Contact contact) throws DfException {
+        String id = contactRepository.save(contact).getId();
+        return  "{data:"+ id + "}";
+    }
+
     private void setDCTMCredentials() {
         dctm.setCredentials(new UserCredentials("dmadmin", "Dmadm1n"));
         dctm.setDocBase("projects");
