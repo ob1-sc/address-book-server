@@ -14,21 +14,28 @@
         <version>1.2.2.RELEASE</version>
     </parent>
 
+    <properties>
+        <testng.version>6.5.2</testng.version>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <version>1.2.2.RELEASE</version>
         </dependency>
+
         <dependency>
             <groupId>spring-boot-starter-dctm</groupId>
             <artifactId>spring-boot-starter-dctm</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
+
     </dependencies>
 
     <repositories>
@@ -39,6 +46,7 @@
                 <updatePolicy>always</updatePolicy>
             </snapshots>
         </repository>
+
         <repository>
             <id>artifactory</id>
             <url>http://pls-jfrogrepo.lss.emc.com:8081/artifactory/internal</url>
@@ -55,6 +63,7 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
         </plugins>
+
     </build>
 
 </project>

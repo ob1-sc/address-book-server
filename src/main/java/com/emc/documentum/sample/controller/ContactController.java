@@ -1,7 +1,9 @@
 package com.emc.documentum.sample.controller;
 
 import com.documentum.fc.common.DfException;
+import com.emc.documentum.sample.domain.Contact;
 import com.emc.documentum.sample.domain.Student;
+import com.emc.documentum.sample.repositories.ContactRepository;
 import com.emc.documentum.sample.repositories.StudentRepository;
 import com.emc.documentum.springdata.core.DctmTemplate;
 import com.emc.documentum.springdata.core.Documentum;
@@ -13,30 +15,24 @@ import javax.annotation.PostConstruct;
 import javax.validation.Valid;
 
 @RestController()
-@RequestMapping(value="/api/addresses")
-public class AddressController {
+@RequestMapping(value="/api/contacts")
+public class ContactController {
 
     @Autowired
     private Documentum dctm;
 
     @Autowired
-    private StudentRepository studentRepository;
+    private ContactRepository contactRepository;
 
     @PostConstruct
     public void postConstruct(){
         setDCTMCredentials();
     }
 
-
-    
     @RequestMapping(value={"/",""}, method= RequestMethod.GET)
-    public Iterable<Student> getAllStudents() throws DfException {
-
-
-
-        return studentRepository.findAll();
+    public Iterable<Contact> getAllContacts() throws DfException {
+        return contactRepository.findAll();
     }
-
 
     private void setDCTMCredentials() {
         dctm.setCredentials(new UserCredentials("dmadmin", "Dmadm1n"));
