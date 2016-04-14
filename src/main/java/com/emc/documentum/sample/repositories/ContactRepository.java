@@ -1,7 +1,7 @@
 package com.emc.documentum.sample.repositories;
 
 import com.emc.documentum.sample.domain.Contact;
-import com.emc.documentum.springdata.repository.DctmRepository;
+import com.emc.documentum.springdata.repository.DctmRepositoryWithContent;
 import com.emc.documentum.springdata.repository.Query;
 
 /**
@@ -9,7 +9,7 @@ import com.emc.documentum.springdata.repository.Query;
  *
  * @author Simon O'Brien
  */
-public interface ContactRepository extends DctmRepository<Contact, String> {
+public interface ContactRepository extends DctmRepositoryWithContent<Contact, String> {
 
     /**
      * Find all contacts where the name matches the given value
