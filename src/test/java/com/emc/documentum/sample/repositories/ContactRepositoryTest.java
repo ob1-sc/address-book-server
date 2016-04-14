@@ -67,6 +67,7 @@ public class ContactRepositoryTest {
         Contact testContact = new Contact();
         testContact.setName(RandomStringUtils.randomAlphanumeric(255));
         testContact.setEmail(RandomStringUtils.randomAlphanumeric(255));
+        testContact.setTelephone(RandomStringUtils.randomAlphanumeric(24));
 
         List<String> groups = new ArrayList<String>();
         groups.add("friends");
@@ -95,6 +96,7 @@ public class ContactRepositoryTest {
             assertThat(createdContact, is(notNullValue()));
             assertThat(createdContact.getName(), is(equalTo(contact.getName())));
             assertThat(createdContact.getEmail(), is(equalTo(contact.getEmail())));
+            assertThat(createdContact.getTelephone(), is(equalTo(contact.getTelephone())));
             assertThat(createdContact.getGroups(), is(equalTo(contact.getGroups())));
 
         } finally {
@@ -128,6 +130,7 @@ public class ContactRepositoryTest {
             assertThat(foundContact, is(notNullValue()));
             assertThat(foundContact.getName(), is(equalTo(contact.getName())));
             assertThat(foundContact.getEmail(), is(equalTo(contact.getEmail())));
+            assertThat(foundContact.getTelephone(), is(equalTo(contact.getTelephone())));
             assertThat(foundContact.getGroups(), is(equalTo(contact.getGroups())));
 
         } finally {
@@ -180,6 +183,7 @@ public class ContactRepositoryTest {
             // update the contact attributes
             createdContact.setName(RandomStringUtils.randomAlphanumeric(255));
             createdContact.setEmail(RandomStringUtils.randomAlphanumeric(255));
+            createdContact.setTelephone(RandomStringUtils.randomAlphanumeric(24));
 
             List<String> groups = new ArrayList<String>();
             groups.add("group1");
@@ -195,6 +199,7 @@ public class ContactRepositoryTest {
             assertThat(updatedContact, is(notNullValue()));
             assertThat(updatedContact.getName(), is(equalTo(createdContact.getName())));
             assertThat(updatedContact.getEmail(), is(equalTo(createdContact.getEmail())));
+            assertThat(updatedContact.getTelephone(), is(equalTo(createdContact.getTelephone())));
             assertThat(updatedContact.getGroups(), is(equalTo(createdContact.getGroups())));
 
         } finally {
@@ -207,7 +212,7 @@ public class ContactRepositoryTest {
     /**
      * Test to find all contacts
      *
-     * TODO: update with attribute value match check due to repeating attribute bug and rever
+     * TODO: update with attribute value match check due to repeating attribute bug and revert
      */
     @Test
     public void findAllContacts() {

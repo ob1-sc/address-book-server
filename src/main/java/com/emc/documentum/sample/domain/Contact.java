@@ -20,11 +20,13 @@ public class Contact {
 	@DctmAttribute(value="object_name")
 	private String name;
 	private String email;
+	private String telephone;
 	private List<String> groups;
 
-	public Contact(String name, String email, List<String> groups) {
+	public Contact(String name, String email, String telephone, List<String> groups) {
 		this.email =  email;
 		this.name = name;
+		this.telephone = telephone;
 		this.groups = groups;
 	}
 
@@ -84,6 +86,24 @@ public class Contact {
     public void setEmail(String email) {
         this.email = email;
     }
+
+	/**
+	 * Get the telephone
+	 *
+	 * @return the telephone
+	 */
+	public String getTelephone() {
+		return telephone;
+	}
+
+	/**
+	 * Set the telephone
+	 *
+	 * @param telephone the telephone
+	 */
+	public void setTelephone(String telephone) {
+		this.telephone = telephone;
+	}
 
 	/**
 	 * Get the groups

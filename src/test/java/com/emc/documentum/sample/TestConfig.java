@@ -17,20 +17,35 @@ import org.springframework.core.env.Environment;
 public class TestConfig {
 	
 	@Autowired
-    private Environment environment;    
-    
+    private Environment environment;
+
+	/**
+	 * Repository name bean
+	 *
+	 * @return repository name
+	 */
     @Bean
     @Qualifier("repositoryName")
     public String getRepositoryName() {
     	return environment.getProperty("repository.name");
     }
-    
+
+	/**
+	 * Repository username bean
+	 *
+	 * @return repository username
+	 */
     @Bean
 	@Qualifier("repositoryUsername")
 	public String getRepositoryUsername() {
     	return environment.getProperty("repository.username");
     }
-	
+
+	/**
+	 * Repository password bean
+	 *
+	 * @return repository password
+	 */
 	@Bean
 	@Qualifier("repositoryPassword")
 	public String getRepositoryPassword() {

@@ -29,7 +29,7 @@ public interface ContactRepository extends DctmRepository<Contact, String> {
      * @return query results
      */
     @Override
-    @Query("select r_object_id, object_name, email, groups from contact")
+    @Query("select r_object_id, object_name, email, telephone, groups from contact")
     public Iterable<Contact> findAll();
 
     /**
@@ -38,7 +38,7 @@ public interface ContactRepository extends DctmRepository<Contact, String> {
      * @param value The value to use when searching
      * @return query results
      */
-    @Query("select r_object_id, object_name, email, groups from contact where any groups = \'%s\'")
+    @Query("select r_object_id, object_name, email, telephone, groups from contact where any groups = \'%s\'")
     public Iterable<Contact> findByGroups(String value);
 
     /**
@@ -47,6 +47,6 @@ public interface ContactRepository extends DctmRepository<Contact, String> {
      * @param value The value to use when searching
      * @return query results
      */
-    @Query("select r_object_id, object_name, email, groups from contact where object_name like \'%%%s%%\'")
+    @Query("select r_object_id, object_name, email, telephone, groups from contact where object_name like \'%%%s%%\'")
     public Iterable<Contact> findByNameContaining(String value);
 }
