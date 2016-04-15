@@ -2,7 +2,8 @@ package com.emc.documentum.sample.domain;
 
 import com.emc.documentum.springdata.entitymanager.mapping.DctmAttribute;
 import com.emc.documentum.springdata.entitymanager.mapping.DctmEntity;
-import com.rsa.cryptoj.o.gr;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.data.annotation.Id;
 
 import java.util.List;
@@ -17,21 +18,24 @@ public class Contact {
 
 	@Id
 	protected String id;
+
 	@DctmAttribute(value="object_name")
 	private String name;
+
 	private String email;
+
 	private String telephone;
+
 	private List<String> groups;
 
-	public Contact(String name, String email, String telephone, List<String> groups) {
-		this.email =  email;
-		this.name = name;
-		this.telephone = telephone;
-		this.groups = groups;
-	}
-
-	public Contact() {
-	}
+	/*
+	 * do not return content size in the json, this
+	 * property is used to populate the hasPicture
+	 * Boolean json response property
+	 */
+	@JsonIgnore
+	@DctmAttribute(value="r_content_size")
+	private Integer contentSize = 0;
 
 	/**
 	 * Get the ID
@@ -121,5 +125,37 @@ public class Contact {
 	 */
 	public void setGroups(List<String> groups) {
 		this.groups = groups;
+	}
+
+	/**
+	 * Get the content size
+	 *
+	 * @return the content size
+	 */
+	public Integer getContentSize() {
+		return this.contentSize;
+	}
+
+	/**
+	 * Set the content size
+	 *
+	 * @param contentSize the content size
+	 */
+	public void setContentSize(Integer contentSize) {
+		this.contentSize = contentSize;
+	}
+
+	/**
+	 * Gets if the contact has a picture (determined by the content size)
+	 *
+	 * @return if the contact has a picture
+	 */
+	@JsonProperty
+	public Boolean hasPicture() {
+		if(this.contentSize > 0) {
+			return Boolean.TRUE;
+		} else {
+			return Boolean.FALSE;
+		}
 	}
 }

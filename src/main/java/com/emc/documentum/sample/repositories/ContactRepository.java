@@ -16,7 +16,10 @@ public interface ContactRepository extends DctmRepositoryWithContent<Contact, St
      *
      * @param value The value to use when searching
      * @return query results
+     *
+     * TODO: remove override once queries are built via reflection
      */
+    @Query("select r_object_id, object_name, email, telephone, groups, r_content_size from contact where object_name = \'%s\'")
     public Iterable<Contact> findByName(String value);
 
     /**
@@ -29,7 +32,7 @@ public interface ContactRepository extends DctmRepositoryWithContent<Contact, St
      * @return query results
      */
     @Override
-    @Query("select r_object_id, object_name, email, telephone, groups from contact")
+    @Query("select r_object_id, object_name, email, telephone, groups, r_content_size from contact")
     public Iterable<Contact> findAll();
 
     /**
@@ -38,7 +41,7 @@ public interface ContactRepository extends DctmRepositoryWithContent<Contact, St
      * @param value The value to use when searching
      * @return query results
      */
-    @Query("select r_object_id, object_name, email, telephone, groups from contact where any groups = \'%s\'")
+    @Query("select r_object_id, object_name, email, telephone, groups, r_content_size from contact where any groups = \'%s\'")
     public Iterable<Contact> findByGroups(String value);
 
     /**
@@ -47,6 +50,6 @@ public interface ContactRepository extends DctmRepositoryWithContent<Contact, St
      * @param value The value to use when searching
      * @return query results
      */
-    @Query("select r_object_id, object_name, email, telephone, groups from contact where object_name like \'%%%s%%\'")
+    @Query("select r_object_id, object_name, email, telephone, groups, r_content_size from contact where object_name like \'%%%s%%\'")
     public Iterable<Contact> findByNameContaining(String value);
 }

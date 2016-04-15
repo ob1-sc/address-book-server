@@ -1,5 +1,6 @@
 package com.emc.documentum.sample;
 
+import com.emc.documentum.sample.controller.ContactController;
 import com.emc.documentum.springdata.repository.config.EnableDctmRepositories;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -11,7 +12,8 @@ import org.springframework.core.env.Environment;
  */
 @Configuration
 @ComponentScan(basePackages = {"com.emc.documentum.springdata", "com.emc.documentum.sample"}, excludeFilters={
-		@ComponentScan.Filter(type= FilterType.ASSIGNABLE_TYPE, value=Application.class)})
+		@ComponentScan.Filter(type=FilterType.ASSIGNABLE_TYPE, value=Application.class),
+		@ComponentScan.Filter(type=FilterType.ASSIGNABLE_TYPE, value=ContactController.class)})
 @EnableDctmRepositories
 @PropertySource("classpath:application.properties")
 public class TestConfig {

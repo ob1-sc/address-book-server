@@ -98,6 +98,7 @@ public class ContactRepositoryTest {
             assertThat(createdContact.getEmail(), is(equalTo(contact.getEmail())));
             assertThat(createdContact.getTelephone(), is(equalTo(contact.getTelephone())));
             assertThat(createdContact.getGroups(), is(equalTo(contact.getGroups())));
+            assertThat(createdContact.hasPicture(), is(equalTo(Boolean.FALSE)));
 
         } finally {
 
@@ -132,6 +133,7 @@ public class ContactRepositoryTest {
             assertThat(foundContact.getEmail(), is(equalTo(contact.getEmail())));
             assertThat(foundContact.getTelephone(), is(equalTo(contact.getTelephone())));
             assertThat(foundContact.getGroups(), is(equalTo(contact.getGroups())));
+            assertThat(foundContact.hasPicture(), is(equalTo(Boolean.FALSE)));
 
         } finally {
 
@@ -201,6 +203,7 @@ public class ContactRepositoryTest {
             assertThat(updatedContact.getEmail(), is(equalTo(createdContact.getEmail())));
             assertThat(updatedContact.getTelephone(), is(equalTo(createdContact.getTelephone())));
             assertThat(updatedContact.getGroups(), is(equalTo(createdContact.getGroups())));
+            assertThat(updatedContact.hasPicture(), is(equalTo(Boolean.FALSE)));
 
         } finally {
 
