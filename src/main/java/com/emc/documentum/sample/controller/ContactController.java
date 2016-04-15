@@ -195,7 +195,7 @@ public class ContactController {
      * @param response servlet response used for returning the picture
      * @throws Exception
      */
-    @RequestMapping(value = "/{id}/picture", method = RequestMethod.GET, produces = { MediaType.IMAGE_JPEG_VALUE })
+    @RequestMapping(value = "/{id}/picture", method = RequestMethod.GET)
     @ResponseBody
     @ResponseStatus(HttpStatus.OK)
     public void getContactPicture(@PathVariable String id, HttpServletResponse response) throws Exception {
