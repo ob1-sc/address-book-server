@@ -4,5 +4,6 @@
     <file url="file://$PROJECT_DIR$" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/emc/documentum/sample/SimpleCORSFilter.java" charset="windows-1252" />
     <file url="file://$PROJECT_DIR$/src/test/java/com/emc/documentum/sample/TestConfig.java" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/src/test/resources/test-contents/contact.png" charset="windows-1252" />
   </component>
 </project>

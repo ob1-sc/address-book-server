@@ -4,17 +4,28 @@ import com.emc.documentum.sample.TestConfig;
 import com.emc.documentum.sample.domain.Contact;
 import com.emc.documentum.springdata.core.Documentum;
 import org.apache.commons.lang.RandomStringUtils;
+import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.SpringApplicationConfiguration;
+import org.springframework.core.io.FileSystemResource;
+import org.springframework.core.io.Resource;
 import org.springframework.data.authentication.UserCredentials;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.util.FileSystemUtils;
+import org.springframework.util.StringUtils;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
@@ -47,6 +58,9 @@ public class ContactRepositoryTest {
 
     @Autowired
     private ContactRepository contactRepository;
+
+    @Value("classpath:/test-contents/contact.png")
+    private Resource contactPicture;
 
     /**
      * Setup Documentum Credentials
@@ -392,5 +406,60 @@ public class ContactRepositoryTest {
             // clean up the contact
             contactRepository.delete(createdContact);
         }
+    }
+
+    /**
+     * Test to set and retrieve contact picture
+     */
+    @Test
+    public void setAndRetrieveContactPicture() throws Exception {
+
+        Contact contact = createTestContact();
+        Contact createdContact = null;
+        Path tempDir = null;
+
+        try {
+
+            // create a test contact
+            createdContact = contactRepository.save(contact);
+
+            // check the contact was created
+            assertThat(createdContact, is(notNullValue()));
+
+            // get the file extension
+            String fileExtension = StringUtils.getFilenameExtension(contactPicture.getFilename());
+
+            // set the contact picture
+            contactRepository.setContent(createdContact, fileExtension, contactPicture.getURL().getPath());
+
+            // create a temp dir to hold the picture
+            tempDir = Files.createTempDirectory(null);
+
+            // create a temp file name
+            String tempFileName = tempDir.toString() + File.separator + UUID.randomUUID();
+
+            // read the contact picture into the temp dir
+            String picturePath = contactRepository.getContent(contact, tempFileName);
+
+            // verify that a path was returned
+            assertThat(picturePath, not(isEmptyOrNullString()));
+
+            // get the retrieved picture
+            Resource retrievedContactPicture = new FileSystemResource(picturePath);
+
+            // assert that the picture file was created and the content length is the same as the original
+            assertThat(retrievedContactPicture, is(notNullValue()));
+            assertThat(retrievedContactPicture.contentLength(), is(equalTo(contactPicture.contentLength())));
+
+        } finally {
+
+            // clean up the contact
+            contactRepository.delete(createdContact);
+
+            // clean up the downloaded picture
+            FileSystemUtils.deleteRecursively(tempDir.toFile());
+        }
+
+
     }
 }

@@ -26,7 +26,7 @@
         </dependency>
 
         <dependency>
-            <groupId>spring-boot-starter-dctm</groupId>
+            <groupId>com.emc.documentum.spring</groupId>
             <artifactId>spring-boot-starter-dctm</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
@@ -36,45 +36,47 @@
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
 
-        <!--<dependency>-->
-            <!--<groupId>com.mysema.querydsl</groupId>-->
-            <!--<artifactId>querydsl-mongodb</artifactId>-->
-            <!--<version>${querydsl.version}</version>-->
-            <!--<optional>true</optional>-->
-        <!--</dependency>-->
-
         <dependency>
             <groupId>com.mysema.querydsl</groupId>
             <artifactId>querydsl-core</artifactId>
             <version>${querydsl.version}</version>
-            <!--<optional>true</optional>-->
         </dependency>
 
-        <!--<dependency>-->
-            <!--<groupId>com.mysema.querydsl</groupId>-->
-            <!--<artifactId>querydsl-apt</artifactId>-->
-            <!--<version>${querydsl.version}</version>-->
-            <!--<scope>provided</scope>-->
-        <!--</dependency>-->
+        <dependency>
+            <groupId>pl.pragmatists</groupId>
+            <artifactId>JUnitParams</artifactId>
+            <version>1.0.5</version>
+            <scope>test</scope>
+        </dependency>
 
     </dependencies>
 
     <repositories>
+        <!--<repository>-->
+            <!--<id>artifactory-dev</id>-->
+            <!--<url>http://pls-jfrogrepo.lss.emc.com:8081/artifactory/dev-snapshot-local</url>-->
+            <!--<snapshots>-->
+                <!--<updatePolicy>always</updatePolicy>-->
+            <!--</snapshots>-->
+        <!--</repository>-->
+
+        <!--<repository>-->
+            <!--<id>artifactory</id>-->
+            <!--<url>http://pls-jfrogrepo.lss.emc.com:8081/artifactory/internal</url>-->
+            <!--<snapshots>-->
+                <!--<updatePolicy>never</updatePolicy>-->
+            <!--</snapshots>-->
+        <!--</repository>-->
+
         <repository>
-            <id>artifactory-dev</id>
-            <url>http://pls-jfrogrepo.lss.emc.com:8081/artifactory/dev-snapshot-local</url>
+            <id>com.emc.documentum.spring</id>
+            <url>https://raw.github.com/mmohen/mvn-repo/gh-pages</url>
             <snapshots>
+                <enabled>true</enabled>
                 <updatePolicy>always</updatePolicy>
             </snapshots>
         </repository>
 
-        <repository>
-            <id>artifactory</id>
-            <url>http://pls-jfrogrepo.lss.emc.com:8081/artifactory/internal</url>
-            <snapshots>
-                <updatePolicy>never</updatePolicy>
-            </snapshots>
-        </repository>
     </repositories>
 
     <build>

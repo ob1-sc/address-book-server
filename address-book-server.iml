@@ -7,6 +7,7 @@
       <sourceFolder url="file://$MODULE_DIR$/src/main/java" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/main/resources" type="java-resource" />
       <sourceFolder url="file://$MODULE_DIR$/src/test/java" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/src/test/resources" type="java-test-resource" />
       <excludeFolder url="file://$MODULE_DIR$/target" />
     </content>
     <orderEntry type="inheritedJdk" />
@@ -19,7 +20,7 @@
     <orderEntry type="library" name="Maven: org.hamcrest:hamcrest-library:1.3" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-core:4.1.5.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-test:4.1.5.RELEASE" level="project" />
-    <orderEntry type="library" name="Maven: spring-boot-starter-dctm:spring-boot-starter-dctm:0.0.1-SNAPSHOT" level="project" />
+    <orderEntry type="library" name="Maven: com.emc.documentum.spring:spring-boot-starter-dctm:0.0.1-SNAPSHOT" level="project" />
     <orderEntry type="library" name="Maven: com.emc.documentum.spring:spring-data-documentum:0.0.1-SNAPSHOT" level="project" />
     <orderEntry type="library" name="Maven: org.slf4j:slf4j-api:1.7.10" level="project" />
     <orderEntry type="library" name="Maven: ch.qos.logback:logback-classic:1.1.2" level="project" />
@@ -31,14 +32,7 @@
     <orderEntry type="library" name="Maven: com.emc.documentum.dfc:krbutil:7.1.1-SNAPSHOT" level="project" />
     <orderEntry type="library" name="Maven: com.emc.documentum.fs2:xtrim-api:6.7.1000.0003" level="project" />
     <orderEntry type="library" name="Maven: com.emc.documentum.fs2:xtrim-server:6.7.1000.0003" level="project" />
-    <orderEntry type="library" name="Maven: aspectj:aspectjrt:1.5.2a" level="project" />
-    <orderEntry type="library" name="Maven: commons-codec:commons-codec:1.3" level="project" />
-    <orderEntry type="library" name="Maven: commons-lang:commons-lang:2.4" level="project" />
-    <orderEntry type="library" name="Maven: log4j:log4j:1.2.17" level="project" />
     <orderEntry type="library" name="Maven: javax.xml.bind:jsr173_api:20060801" level="project" />
-    <orderEntry type="library" name="Maven: javax.activation:activation:1.1" level="project" />
-    <orderEntry type="library" name="Maven: javax.xml.bind:jaxb-api:2.1" level="project" />
-    <orderEntry type="library" name="Maven: com.sun.xml.bind:jaxb-impl:2.1.4" level="project" />
     <orderEntry type="library" name="Maven: jcifs:jcifs-krb5:1.3.1" level="project" />
     <orderEntry type="library" name="Maven: apple.macbinary:All-MB:2.0" level="project" />
     <orderEntry type="library" name="Maven: com.emc.rsa.certj:certj:5.2" level="project" />
@@ -48,6 +42,14 @@
     <orderEntry type="library" name="Maven: vsj:vsj-license:3.3" level="project" />
     <orderEntry type="library" name="Maven: vsj:vsj-standard:3.3" level="project" />
     <orderEntry type="library" name="Maven: quest:questFixForJDK7:3.3" level="project" />
+    <orderEntry type="library" name="Maven: javax.activation:activation:1.1" level="project" />
+    <orderEntry type="library" name="Maven: aspectj:aspectjrt:1.5.2a" level="project" />
+    <orderEntry type="library" name="Maven: commons-codec:commons-codec:1.3" level="project" />
+    <orderEntry type="library" name="Maven: commons-lang:commons-lang:2.4" level="project" />
+    <orderEntry type="library" name="Maven: javax.xml.bind:jaxb-api:2.1" level="project" />
+    <orderEntry type="library" name="Maven: javax.xml.stream:stax-api:1.0-2" level="project" />
+    <orderEntry type="library" name="Maven: com.sun.xml.bind:jaxb-impl:2.1.4" level="project" />
+    <orderEntry type="library" name="Maven: log4j:log4j:1.2.17" level="project" />
     <orderEntry type="library" name="Maven: commons-beanutils:commons-beanutils:1.9.2" level="project" />
     <orderEntry type="library" name="Maven: commons-collections:commons-collections:3.2.1" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.data:spring-data-commons:1.9.2.RELEASE" level="project" />
@@ -59,7 +61,6 @@
     <orderEntry type="library" name="Maven: org.apache.geronimo.specs:geronimo-jta_1.1_spec:1.1.1" level="project" />
     <orderEntry type="library" name="Maven: commons-pool:commons-pool:1.6" level="project" />
     <orderEntry type="library" name="Maven: org.apache.xbean:xbean-asm4-shaded:3.14" level="project" />
-    <orderEntry type="library" name="Maven: javax.xml.stream:stax-api:1.0-2" level="project" />
     <orderEntry type="library" name="Maven: org.apache.geronimo.specs:geronimo-jpa_2.0_spec:1.1" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-starter-web:1.2.2.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-starter:1.2.2.RELEASE" level="project" />
@@ -93,5 +94,6 @@
     <orderEntry type="library" name="Maven: com.google.code.findbugs:jsr305:1.3.9" level="project" />
     <orderEntry type="library" name="Maven: com.mysema.commons:mysema-commons-lang:0.2.4" level="project" />
     <orderEntry type="library" name="Maven: com.infradna.tool:bridge-method-annotation:1.13" level="project" />
+    <orderEntry type="library" scope="TEST" name="Maven: pl.pragmatists:JUnitParams:1.0.5" level="project" />
   </component>
 </module>
